@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheets/donate.css">
+  <title>Educational Robots for EECS</title>
+</head>
+<body>
+  <div class="header">
+    <a href="/" class="header-section button button_small">
+      Fundraiser
+    </a>
+    <div class="header-section logo-container">
+      <img src="/images/logo.PNG" alt="Logo">
+    </div>
+    <div class="header-section account-signin">
+      Already have an account? <a href="https://www.google.com" class="signin-link">Sign in</a>
+    </div>
+  </div>
+  <div class="background">
+    <div class="main_column">
+      <div class="smiles_wrapper">
+        <img src="/images/small_smiles.png">
+        <div class="smiles_text">
+          You're supporting 
+          <span class="smiles_text" style="font-weight: bold;">Buying Educational Robots for EECS<br><br></span>
+          <span class="smiles_text" style="color:gray">Your donation will benefit </span>
+          <span class="smiles_text" style="font-weight: bold; color:gray">Rebecca Lamoreux</span>
+        </div>
+      </div>
+      <form id="donationForm" action="/donations/submit-donation" method="post">
+        <div class="donation-form">
+          <p class="donation-title">Enter your donation</p>
+          <div class="donation-amounts">
+            <button type="button" class="button donation-button" data-value="10" onclick="updateDonationSummary()">$10</button>
+            <button type="button" class="button donation-button" data-value="20" onclick="updateDonationSummary()">$20</button>
+            <button type="button" class="button donation-button" data-value="50" onclick="updateDonationSummary()">$50</button>
+            <button type="button" class="button donation-button" data-value="100" onclick="updateDonationSummary()">$100</button>
+          </div>
+          <div class="custom-amount">
+            <input type="text" class="custom-amount-input" placeholder="$ Other amount" oninput="updateDonationSummary()">
+          </div>
+        </div>
+        <div class="tip-section">
+          <p class="tip-title">Tip GoFundMe services</p>
+          <p class="tip-description">GoFundMe has a 0% platform fee for organizers and relies primarily on the generosity of donors like you to operate our service.</p>
+          <input type="number" class="tip-input" placeholder="$" oninput="updateDonationSummary()" min="0" step="1">
+        </div>
+        <div class="just_the_tip">
+          <img src="/images/hands_up.png" class="support-icon">
+          <p class="support-text">Adding a GoFundMe tip means being a key part of improving the services for donors like you and the campaigns you support.</p>
+        </div>
+        <p style="border-bottom: 1px solid #ccc;"><br></p>
+        <!-- Name Input Fields -->
+        <div class="name-input-section">
+          <div class="input-wrapper">
+            <label for="firstName" class="input-label">First Name</label>
+            <input type="text" id="firstName" name="firstName" placeholder="First Name" class="name-input">
+          </div>
+          <div class="input-wrapper">
+            <label for="lastName" class="input-label">Last Name</label>
+            <input type="text" id="lastName" name="lastName" placeholder="Last Name" class="name-input">
+          </div>
+        </div>
+        <p style="border-bottom: 1px solid #ccc;"><br></p>
+        <p class="payment-method-title">Payment method</p>
+        <div class="payment-method-section">
+          <div class="payment-options-container">
+            <label class="payment-option">
+            <input type="radio" name="paymentMethod" value="paypal" checked>
+            <img src="/images/paypal.png"class="payment-icon">
+              PayPal
+            </label>
+            <hr class="payment-option-separator">
+              <label class="payment-option">
+                <input type="radio" name="paymentMethod" value="venmo">
+                <img src="/images/venmo.png"class="payment-icon">
+                  Venmo
+              </label>
+            <hr class="payment-option-separator">
+            <label class="payment-option">
+              <input type="radio" name="paymentMethod" value="gpay">
+              <img src="/images/gpay.png" class="payment-icon">
+                Google Pay
+            </label>
+            <hr class="payment-option-separator">
+            <label class="payment-option">
+            <input type="radio" name="paymentMethod" value="credit">
+            <img src="/images/credit.png" class="payment-icon">
+              Credit or debit
+            </label>
+          </div>
+        </div>
+        <div class="privacy-section">
+          <input type="checkbox" id="anonymousDonation" name="anonymousDonation" class="privacy-checkbox" onchange="updateDonationSummary()">
+          <label for="anonymousDonation" class="privacy-label">Don't display my name publicly on the fundraiser.</label>
+          <img src="/images/information.png" class="information-icon">
+          <p><br><br></p>
+        </div>
+        <div class="summary-section">
+          <p class="summary-item-label" style="font-weight:bold; color:#242424">Your donation</p>
+          <div class="summary-item">
+            <span class="summary-item-label">Your donation</span>
+            <span class="summary-item-amount" id="donationAmount">$0.00<br></span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-item-label">GoFundMe tip</span>
+            <span class="summary-item-amount" id="tipAmount">$0.00<br></span>
+          </div>
+          <div class="summary-item summary-item-total">
+            <span class="summary-item-label" style="color:#242424">Total due today</span>
+            <span class="summary-item-amount" id="totalAmount">$0.00<br></span>
+          </div>
+          <input type="hidden" name="donationAmount" id="hiddenDonationAmount" value="0">
+        </div>
+        <button type="submit" class="payment-button">PayPal</button>     
+        <p class="agreement-text">By choosing the payment method above, you agree to the GoFundMe Terms of Service and acknowledge the Privacy Notice.</p>
+        <p class="learn-more-text">Learn more about pricing and fees.<br><br><br></p>
+        <div class="security-section">
+          <img src="/images/shield.png" alt="GoFundMe Shield" class="security-icon">
+          <div class="security-text">
+            <h2 class="security-title">GoFundMe protects your donation</h2>
+            <span class="security-description">We guarantee you a full refund for up to a year in the rare case that fraud occurs.</span>
+            <span class="security-description" style="text-decoration: underline;"> See our GoFundMe Giving Guarantee.</span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script>
+    function formatCurrency(value) {
+      return `$${value.toFixed(2)}`;
+    }
+
+    function getDonationValue() {
+      // Check for an active button first
+      const activeButton = document.querySelector('.donation-button.active');
+      if (activeButton) {
+        return parseFloat(activeButton.dataset.value);
+      }
+      
+      // If no button is active, check the custom amount input
+      const customAmount = document.querySelector('.custom-amount-input').value;
+      return customAmount ? parseFloat(customAmount) : 0;
+    }
+
+    function updateDonationSummary() {
+      // Get donation amount
+      var donationAmount = getDonationValue(); 
+      // Parse tip amount and convert to number
+      var tipAmount = parseFloat(document.querySelector('.tip-input').value) || 0; 
+      var totalAmount = donationAmount + tipAmount;
+
+      // Update the display
+      document.getElementById('donationAmount').textContent = formatCurrency(donationAmount);
+      document.getElementById('tipAmount').textContent = formatCurrency(tipAmount);
+      document.getElementById('totalAmount').textContent = formatCurrency(totalAmount);
+      document.getElementById('hiddenDonationAmount').value = donationAmount;
+    }
+
+    function updateDonationAmount(amount) {
+      // Remove active class from all buttons
+      document.querySelectorAll('.donation-button').forEach(button => {
+        button.classList.remove('active');
+      });
+
+      // If a preset amount was clicked, set the active class and clear custom input
+      if (amount) {
+        document.querySelector(`.donation-button[data-value="${amount}"]`).classList.add('active');
+        document.querySelector('.custom-amount-input').value = ''; // Clear the custom input
+      }
+
+      updateDonationSummary();
+    }
+
+    document.querySelectorAll('.donation-button').forEach(button => {
+      button.addEventListener('click', function() {
+        updateDonationAmount(this.dataset.value);
+      });
+    });
+
+    document.querySelector('.custom-amount-input').addEventListener('input', function() {
+      // If custom input is used, remove active class from buttons
+      document.querySelectorAll('.donation-button').forEach(button => {
+        button.classList.remove('active');
+      });
+      updateDonationSummary();
+    });
+
+    function validateForm() {
+      const donationAmount = getDonationValue();
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName = document.getElementById('lastName').value.trim();
+      const anonymous = document.getElementById('anonymousDonation').checked ? 1 : 0;
+
+      let validationPassed = true;
+
+      // Clear previous error messages
+      document.querySelectorAll('.error-message').forEach(el => el.remove());
+
+      // Check if donation amount is entered and more than 0
+      if (donationAmount <= 0) {
+        displayErrorMessage('Please enter a donation amount', '.donation-form');
+        validationPassed = false;
+      }
+
+      // Check if first name is entered
+      if (!firstName) {
+        displayErrorMessage('Please enter your first name', '.name-input-section');
+        validationPassed = false;
+      }
+
+      // Check if last name is entered
+      if (!lastName) {
+        displayErrorMessage('Please enter your last name', '.name-input-section');
+        validationPassed = false;
+      }
+
+      // Prevent form submission upon failure
+      if (!validationPassed) {
+        event.preventDefault();
+      }
+
+    }
+
+    function submitDonation(firstName, lastName, donationAmount, anonymous) {
+
+      fetch('/donations/submit-donation', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+          firstName: firstName,
+          lastName: lastName,
+          donationAmount: donationAmount,
+          anonymous: anonymous
+        })
+      }).then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.text();
+      }).then(result => {
+        alert('Donation submitted successfully');
+        window.location.href = '/'; // Redirect to the index page
+      }).catch(error => {
+        alert('Failed to submit donation: ' + error.message);
+      });
+    }
+
+    function displayErrorMessage(message, afterElementSelector) {
+      const errorMessage = document.createElement('p');
+      errorMessage.textContent = message;
+      errorMessage.style.color = 'red';
+      errorMessage.className = 'error-message';
+      const afterElement = document.querySelector(afterElementSelector);
+      afterElement.parentNode.insertBefore(errorMessage, afterElement.nextSibling);
+    }
+
+    document.getElementById('donationForm').addEventListener('submit', function(event) {
+      validateForm(event);
+    });
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+      updateDonationSummary();
+    });
+    
+  </script>
+
+</body>
+</html> 

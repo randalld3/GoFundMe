@@ -1,11 +1,125 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/petition.css">
+    <title>Educational Robots for EECS</title>
+</head>
+<body>
+    <div class="header">
+        Search &nbsp;&nbsp; How it works &nbsp;&nbsp; Start a GoFundMe
+        <img src="/images/logo.PNG" alt="logo"/>
+        Sign in &nbsp;&nbsp; 
+        <p style="font-weight: bold; display:inline-block; color:#242424">Share &nbsp;&nbsp;&nbsp;&nbsp; Donate</p>
+        <p class="title">GoFundMe for buying educational robots for EECS</p>
+    </div>
+    <div class="main_grid">
+        <div class="main_content">
+            <p><img src="/images/smiles.PNG" alt="hero image"/></p>
+            <p class="main_content" style="border-bottom: 1px solid gray; margin-top:0%">We're embarking on a transformative journey to enhance the learning experience of students in our Electrical Engineering and Computer Science (EECS) department. With your help, we aim to acquire educational robots to revolutionize our curriculum. These robots offer hands-on learning opportunities, bridging theory with practical application and preparing students for the interdisciplinary challenges of tomorrow's world. Your donation directly contributes to purchasing Arduino-based kits, Raspberry Pi-powered robots, robotic arms, and more. Together, we can empower the next generation of engineers and innovators. Thank you for considering our cause and making a lasting impact on education and technology.<br><br></p>
+            <p class="section_title">Updates (3)</p>
+            <p class="main_content" style="border: 0; color:#242424; font-weight:bold;">January 12th, 2024</p>
+            <p class="main_content" style="font-size: 16px; display:inline-block; border: 0;">by Rebecca Lamoureux, Organizer</p>
+            <p class="main_content" style="border-bottom:0;">Thank you so much for helping! We have gotten so close to our goal, the response from everyone has been so positive and heart warming!</p>
+            <p class="main_content" style="border-bottom:0; text-decoration: underline; font-size: 16px;">See older updates<br></p>
+            <div class="button_container">
+                <a href="index.html" class="button button_large" style="margin-right: 40px"> Donate </a>
+                <div class="button button_large"> Share </div>
+            </div>
+            <p class="main_content" style="border-bottom: 1px solid gray; width:95%;"><br></p>
+            <p class="section_title">Organizer</p>
+            <div class="organizer_wrapper">
+                <img src="/images/organizer.PNG" alt="organizer" style="padding-top: 15px; width:48px;" />
+                <div class="organizer_info">
+                    <p style="color:#242424; font-weight: bold; margin-bottom:8px;"> Rebecca Lamoureux</p>
+                    <p style="margin-top:8px;">Organizer</p>
+                    <p style="margin-top:8px; margin-bottom: 8px;"> Rosalia, WA</p>
+                    <p class="button button_medium" style="margin-top:8px">Contact</p>
+                </div>
+            </div>
+            <p class="main_content" style="border-bottom: 1px solid gray; width: 95%;"><br></p>
+            <p class="section_title">Words of Support (2)</p>
+            <p class="main_content">Please donate to share words of support</p>
+            <div class="support_wrapper">
+                <img src="/images/heart.png" style="max-width: 48px; max-height:48px; padding-right: 20px;">
+                <div class="main_content"> 
+                    <p style="color:#242424; font-weight: bold;"> Holly Hoagland</p>
+                    <p>$20 &nbsp;&bull;&nbsp; 1 mo</p>
+                    <p>Sending you love, single mom to single mom.</p>
+                    <br><br> 
+                </div> 
+            </div>  
+            <div class="support_wrapper">
+                <img src="/images/heart.png" style="max-width: 48px; max-height:48px; padding-right: 20px;">
+                <div class="main_content"> 
+                    <p style="color:#242424; font-weight: bold;"> Linda Syed</p>
+                    <p>$25 &nbsp;&bull;&nbsp; 1 mo</p>
+                    <p>I have had a car stolen myself.</p>
+                </div>  
+            </div> 
+            <p class="main_content" style="border-bottom: 1px solid gray; width:95%;"><br></p>
+            <div class="content_wrapper">
+                <div class="main_content" style="height: 37px; margin-right: 0px;">Created January 9th, 2024 &nbsp;&nbsp; </div>
+                <img src="/images/tag.png" href="index.html" style="display: inline-block; padding-bottom:12px;">
+                <div class="main_content" style="height:37px; margin-right: 0px; text-decoration: underline;"> &nbsp; Emergencies<br><br> </div>
+            </div>  
+            <p class="main_content" style="border-bottom: 1px solid gray; width:95%;"><br></p>
+            <div class="main_content" style="padding-top: 50px; padding-bottom: 80px;">
+                <img src="/images/flag.PNG">
+                 &nbsp;&nbsp;Report fundraiser
+            </div>
+        </div>
+        <div class="right_runner">
+            <p style="display:inline-block; font-size:24px; font-weight:bold; color:#242424;">$4,259</p>
+            <p class="runner_text">&nbsp;raised of $6,000 goal</p>
+            <img src="/images/progress_bar.png" style="display: block;">
+            <!-- insert # donations here -->
+            <a href="donate" class="donate_button"> Donate now</a>
+            <img src="/images/runner_share.PNG" style="display:block">
+            <div class="location_section">
+                <img src="/images/purple_location.PNG" style="margin-top: 20px; height: 40px">
+                <p style="margin:0; padding-top: 10px; color:purple; font-weight:bold">This fundraiser is located near you</p>
+            </div>
+            <!-- insert specific donations here -->
+            <% if (donations && donations.length > 0) { %>
+                <% donations.forEach(function(donation) { %>
+                    <div class="donation_entry">
+                        <img src="/images/heart.png" class="donation_heart" alt="Heart">
+                        <div class="donation_details">
+                            <p class="donation_name"><%= donation.firstName %> <%= donation.lastName %></p>
+                            <p class="donation_amount">$<%= donation.donationAmount %></p>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p>No donations to display.</p>
+            <% } %>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer_section">
+            <img src="/images/arrow.PNG">
+            <div class="footer_text">
+                <p style="font-weight:bold">Easy</p>
+                <p>Donate quickly and easily</p>
+            </div>
+        </div>
+        <div class="footer_section">
+            <img src="/images/phone.PNG">
+            <div class="footer_text">
+                <p style="font-weight:bold">Powerful</p>
+                <p>Send help right to the people and causes you care about.</p>
+            </div>                
+        </div>
+        <div class="footer_section">
+            <img src="/images/shield.png">
+            <div class="footer_text">
+                <p style="font-weight:bold">Trusted</p>
+                <p>Your donation is protected by the GoFundMe Giving Guarantee.</p>
+            </div>                
+        </div>
+    </div>
+    </div>
   </body>
-</html>
+</html> 
